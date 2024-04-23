@@ -75,10 +75,11 @@ export async function getInputs(): Promise<Inputs> {
     /^.*\/(?<type>users|orgs)\/(?<owner>[\d\w-._]+)\/projects\/(?<number>\d+)\/?(views\/(?<view>\d+))?\/?$/;
   const projectMatchGroups = raw.project_url.match(PROJECT_URL_REGEX)?.groups;
 
-  debug({PROJECT_URL_REGEX: PROJECT_URL_REGEX, project_url: raw.project_url, match: projectMatchGroups});
-
   if (!projectMatchGroups)
-    throw new Error('project_url is invalid: no matched groups');
+    throw new Error(
+      'project_url is invalid: no matched groups.\n'
+      + `Matching: '${raw.project_url}' against '${PROJECT_URL_REGEX}' gave '${projectMatchGroups}'`
+    );
   if (!projectMatchGroups['type'])
     throw new Error('project_url is invalid: no type');
   if (!projectMatchGroups['owner'])
