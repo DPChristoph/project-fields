@@ -75,6 +75,10 @@ export async function getInputs(): Promise<Inputs> {
     /^.*\/(?<type>users|orgs)\/(?<owner>[\d\w-._]+)\/projects\/(?<number>\d+)\/?(views\/(?<view>\d+))?\/?$/;
   const projectMatchGroups = raw.project_url.match(PROJECT_URL_REGEX)?.groups;
 
+  console.log("PROJECT_URL_REGEX:", PROJECT_URL_REGEX);
+  console.log("project_url":, raw.project_url);
+  console.log("=> match:", projectMatchGroups);
+
   if (!projectMatchGroups)
     throw new Error('project_url is invalid: no matched groups');
   if (!projectMatchGroups['type'])
@@ -99,7 +103,7 @@ export async function getInputs(): Promise<Inputs> {
 
   // #region resource_url
   const RESOURCE_URL_REGEX =
-    /^.*github.com\/(?<owner>[\d\w-._]+)\/(?<repo>[\d\w-._]+)\/(?<type>pull|issues)\/(?<number>\d+)\/?$/;
+    /^.*\/(?<owner>[\d\w-._]+)\/(?<repo>[\d\w-._]+)\/(?<type>pull|issues)\/(?<number>\d+)\/?$/;
   const resourceMatchGroups =
     raw.resource_url.match(RESOURCE_URL_REGEX)?.groups;
 
