@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import {debug, parseCSVArray} from './utils';
+import {parseCSVArray} from './utils';
 
 export enum OperationType {
   GET_FIELDS = 'GET',
@@ -77,8 +77,8 @@ export async function getInputs(): Promise<Inputs> {
 
   if (!projectMatchGroups)
     throw new Error(
-      'project_url is invalid: no matched groups.\n'
-      + `Matching: '${raw.project_url}' against '${PROJECT_URL_REGEX}' gave '${projectMatchGroups}'`
+      'project_url is invalid: no matched groups.\n' +
+        `Matching: '${raw.project_url}' against '${PROJECT_URL_REGEX}' gave '${projectMatchGroups}'`
     );
   if (!projectMatchGroups['type'])
     throw new Error('project_url is invalid: no type');
