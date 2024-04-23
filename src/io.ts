@@ -76,7 +76,7 @@ export async function getInputs(): Promise<Inputs> {
   const projectMatchGroups = raw.project_url.match(PROJECT_URL_REGEX)?.groups;
 
   console.log("PROJECT_URL_REGEX:", PROJECT_URL_REGEX);
-  console.log("project_url":, raw.project_url);
+  console.log("project_url:", raw.project_url);
   console.log("=> match:", projectMatchGroups);
 
   if (!projectMatchGroups)
