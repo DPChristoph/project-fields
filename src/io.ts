@@ -72,7 +72,7 @@ export async function getInputs(): Promise<Inputs> {
 
   // #region project_url
   const PROJECT_URL_REGEX =
-    /^.*github.com\/(?<type>users|orgs)\/(?<owner>[\d\w-._]+)\/projects\/(?<number>\d+)\/?(views\/(?<view>\d+))?\/?$/;
+    /^.*\/(?<type>users|orgs)\/(?<owner>[\d\w-._]+)\/projects\/(?<number>\d+)\/?(views\/(?<view>\d+))?\/?$/;
   const projectMatchGroups = raw.project_url.match(PROJECT_URL_REGEX)?.groups;
 
   if (!projectMatchGroups)
